@@ -16,7 +16,7 @@ class Scraping():
         word_quantity = 0
 
         for word in words:
-            if word == selected_word:
+            if word.lower() == selected_word.lower():
                 word_quantity += 1
 
         return word_quantity
