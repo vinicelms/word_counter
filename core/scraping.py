@@ -8,6 +8,8 @@ class Scraping():
         html = urllib.request.urlopen(str(url)).read().decode("utf-8")
 
         soup = BeautifulSoup(html, "html.parser")
+        for script in soup(["script", "style"]):
+            script.extract()
 
         content = soup.get_text()
 
