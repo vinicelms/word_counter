@@ -4,6 +4,15 @@ API for the purpose of performing a data scraping on a page and returning a numb
 
 The URL and a word are pre-informed through parameters entered in the API URL structure.
 
+## Python version used: `3.6.0`
+
+## Project requirements:
+- Flask
+- Flask-RESTful
+- lxml
+- requests
+- beautifulsoup4
+
 ## How to use (install):
 1 - Clone the project:
 ```sh
