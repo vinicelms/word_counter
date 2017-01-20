@@ -1,11 +1,15 @@
-import urllib.request
+from urllib import request, parse
 from lxml import html
 from bs4 import BeautifulSoup
 
 class Scraping():
 
     def count_word(url, selected_word):
-        html = urllib.request.urlopen(str(url)).read().decode("utf-8")
+        p = parse.urlparse(url)
+        if not p.scheme or not p.netloc:
+            raise ValueError("URL is not valid!")
+
+        html = request.urlopen(str(url)).read().decode("utf-8")
 
         soup = BeautifulSoup(html, "html.parser")
         for script in soup(["script", "style"]):

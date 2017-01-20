@@ -16,9 +16,19 @@ class Word_Counter(Resource):
         url = args.get('url')
         word = args.get('word')
 
-        quantity = Scraping.count_word(url, word)
         word_counted = {}
-        word_counted[str(word)] = quantity
+
+        if not url:
+            return jsonify({"error": "URL cannot be blank!"})
+        elif not word:
+            return jsonify({"error": "Word cannot be blank!"})
+        else:
+            try:
+                quantity = Scraping.count_word(url, word)
+                word_counted[str(word)] = quantity
+            except ValueError as url_error:
+                return jsonify({"error": str(url_error)})
+        
         return jsonify(word_counted)
 
 api.add_resource(Word_Counter, '/word_counter')
