@@ -73,3 +73,28 @@ Invoke-RestMethod -Uri "127.0.0.1:5000/word_counter?url=https://docs.python.org/
 
 ## Important:
 ##### `The values entered can be changed if the page is changed or if you use another URL or word.`
+
+## Error Handling:
+- Calling the endpoint without parameters or without URL
+```sh
+{"error": "URL cannot be blank!"}
+```
+- Calling the endpoint without the word parameter
+```sh
+{"error": "Word cannot be blank!"}
+```
+- Calling the endpoint with some incorrect URL information
+```sh
+{"error": "URL is not valid!"}
+```
+
+## How to run tests (Unit Tests):
+```sh
+python -m unittest discover tests
+```
+- Expected return on tests:
+```sh
+Ran 5 tests in 0.532s
+OK
+```
+> The runtime of the test may vary depending on factors of operating system, hardware features or miscellaneous settings
