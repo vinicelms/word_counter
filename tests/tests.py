@@ -39,3 +39,37 @@ class WordCounterTestCase(unittest.TestCase):
         response = self.tester.get("/word_counter?url=https://docs.python.org/3&word=python", content_type="html/text")
         json_data = json.loads(response.get_data().decode("utf-8"))
         self.assertEqual(json_data, {"python": 18})
+
+
+class ScrapingTestCase(unittest.TestCase):
+
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def test_url_without_protocol(self):
+        with self.assertRaises(ValueError) as e:
+            Scraping.count_word("docs.python.org/3", "python")
+
+        excpetion_message = str(e.exception)
+        self.assertEqual(excpetion_message, "URL is not valid!")
+
+    def test_url_empty(self):
+        with self.assertRaises(ValueError) as e:
+            Scraping.count_word("", "python")
+
+        excpetion_message = str(e.exception)
+        self.assertEqual(excpetion_message, "URL is not valid!")
+
+    def test_word_empy(self):
+        with self.assertRaises(ValueError) as e:
+            Scraping.count_word("https://docs.python.org/3", "")
+
+        excpetion_message = str(e.exception)
+        self.assertEqual(excpetion_message, "Word cannot be blank!")
+
+    def test_correct_call(self):
+        response = Scraping.count_word("https://docs.python.org/3", "python")
+        self.assertEqual(response, int(18))
