@@ -94,7 +94,7 @@ python -m unittest discover tests
 ```
 - Expected return on tests:
 ```sh
-Ran 5 tests in 0.532s
+Ran 9 tests in 0.724s
 OK
 ```
 > The runtime of the test may vary depending on factors of operating system, hardware features or miscellaneous settings
