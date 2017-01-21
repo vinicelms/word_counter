@@ -9,6 +9,9 @@ class Scraping():
         if not p.scheme or not p.netloc:
             raise ValueError("URL is not valid!")
 
+        if not selected_word:
+            raise ValueError("Word cannot be blank!")
+
         html = request.urlopen(str(url)).read().decode("utf-8")
 
         soup = BeautifulSoup(html, "html.parser")
